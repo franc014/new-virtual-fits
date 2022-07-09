@@ -2,19 +2,11 @@ import { useShopQuery, CacheLong, gql, useUrl, Link, Seo } from "@shopify/hydrog
 import { Suspense } from "react";
 
 
-const SHOP_QUERY = gql`
-  query ShopInfo {
-    shop {
-      name
-      description
-    }
-  }
-`;
 /**
  * A server component that defines a structure and organization of a page that can be used in different parts of the Hydrogen app
  */
 
-function Layout({ children }) {
+export function Layout({ children }) {
     const { pathname } = useUrl();
     const isHome = pathname === "/";
 
@@ -49,7 +41,7 @@ function Layout({ children }) {
                 <header
                 role="banner"
                 className={`flex items-center h-16 p-6 md:p-8 lg:p-12 sticky backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-4 antialiased transition shadow-sm ${
-                    isHome ? "bg-black/80 text-white" : "bg-white/80"
+                    isHome ? "bg-slate-200 text-indigo-800" : "bg-white/80"
                 }`}
                 >
                     <div className="flex gap-12">
@@ -68,4 +60,12 @@ function Layout({ children }) {
     );
 }
 
-export default Layout;
+const SHOP_QUERY = gql`
+  query ShopInfo {
+    shop {
+      name
+      description
+    }
+  }
+`;
+
