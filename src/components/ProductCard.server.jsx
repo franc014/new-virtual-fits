@@ -11,9 +11,9 @@ export default function ProductCard({ product }) {
       <div className="grid gap-6">
         <div className="shadow-sm rounded relative">
           {isDiscounted && (
-            <label className="subpixel-antialiased absolute top-0 right-0 m-4 text-right text-notice text-red-600 text-xs">
+            <span className="subpixel-antialiased absolute top-0 right-0 m-4 text-right text-notice text-red-600 text-xs">
               Sale
-            </label>
+            </span>
           )}
           <Image
             crop="top"
@@ -28,7 +28,7 @@ export default function ProductCard({ product }) {
           </h3>
           <div className="flex gap-4">
             <span className="max-w-prose whitespace-pre-wrap inherit text-copy flex gap-4">
-              <Money withoutTrailingZeros data={price} className="font-bold"/>
+              <Money withoutTrailingZeros data={price} className="font-bold" />
               {isDiscounted && (
                 <Money
                   className="line-through opacity-50"
