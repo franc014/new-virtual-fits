@@ -1,7 +1,7 @@
-import { useShopQuery, Link, Image, gql, CacheLong } from '@shopify/hydrogen';
+import { useShopQuery, Link, Image, gql, CacheLong } from "@shopify/hydrogen";
 
 const COLLECTIONS_QUERY = gql`
-    query FeaturedCollections {
+  query FeaturedCollections {
     collections(first: 3, query: "collection_type:smart", sortKey: UPDATED_AT) {
       nodes {
         id
@@ -18,18 +18,17 @@ const COLLECTIONS_QUERY = gql`
   }
 `;
 
-function FeaturedCollections(props) {
+function FeaturedCollections() {
+  const {
+    data: { collections },
+  } = useShopQuery({
+    query: COLLECTIONS_QUERY,
+    cache: CacheLong(),
+  });
+  console.log(collections);
 
-    const {
-         data: { collections },
-        } = useShopQuery({
-        query: COLLECTIONS_QUERY,
-        cache: CacheLong(),
-        });
-    console.log(collections);
-   
-    return (
-    <section className="w-full gap-4 md:gap-8 grid p-6 md:p-8 lg:p-12 bg-stone-300">
+  return (
+    <section className="w-full gap-4 md:gap-8 grid p-6 md:p-8 lg:p-12 bg-slate-100">
       <h2 className="whitespace-pre-wrap max-w-prose font-bold text-lead">
         Collections
       </h2>
@@ -37,7 +36,7 @@ function FeaturedCollections(props) {
         {collections.nodes.map((collection) => {
           return (
             <Link key={collection.id} to={`/collections/${collection.handle}`}>
-                  <div className="grid gap-4">
+              <div className="grid gap-4">
                 {collection?.image && (
                   <Image
                     className="rounded shadow-border overflow-clip inline-block aspect-[5/4] md:aspect-[3/2] object-cover"
