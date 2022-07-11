@@ -23,8 +23,6 @@ export function Layout({ children }) {
     cache: CacheLong(),
   });
 
-  console.log(shop);
-
   return (
     <>
       <Suspense>
